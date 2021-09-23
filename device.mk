@@ -1,27 +1,17 @@
-#
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 
-LOCAL_PATH := device/motorola/sofiap_sprout
+LOCAL_PATH := device/motorola/sofiar
 
-# A/B
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor
+# define hardware platform
+PRODUCT_PLATFORM := trinket
+
+#TEST
+# A/B support
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    update_engine \
+    update_engine_sideload \
+    update_verifier
+
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -37,18 +27,13 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-wrapper \
     android.hardware.boot@1.0-impl-recovery \
     bootctrl.trinket \
-    bootxtrl.trinket.recovery
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.trinket \
     bootctrl.trinket.recovery \
-    libgptutils \
-    libz \
-    libcutils
 
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
+PRODUCT_HOST_PACKAGES += \
+    libandroidicu
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
+
+#PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root)
