@@ -74,6 +74,10 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/motorola/sofiap_sprout
 TARGET_KERNEL_CONFIG := sofiap_sprout_defconfig
 
+# Logcat
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
 # Platform
 TARGET_BOARD_PLATFORM := trinket
 
