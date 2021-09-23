@@ -17,3 +17,8 @@
 
 PRODUCT_MAKEFILES := \
      $(LOCAL_DIR)/omni_sofiap_sprout.mk
+
+COMMON_LUNCH_CHOICES := \
+     omni_sofiap_sprout-user \
+     omni_sofiap_sprout-userdebug \
+     omni_sofiap_sprout-eng
